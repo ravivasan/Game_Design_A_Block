@@ -10,9 +10,28 @@ import random #random is similar and has a lot of different functions
 
 
 os.system('cls')
+random.seed(20)
 
+#this loop was to play with random numbers
 for i in range(10):
     randy = random.randint(3,5)
     print(randy)
-    
+    randy2 = random.random()
+    randy2 *=100
+    print(int(randy2))
+
+#arrays in python are called lists
+#lists are signified by []
+# [ , , ,]
+
+fruits = ["apple", "banana", "berries"]
+myfruits = random.choices(fruits)
+print(myfruits)
+
+
+
+
+
+
+
 
