@@ -1,0 +1,29 @@
+#ravi vasan
+#hw for 9/27/21
+#making a word guessinng game
+
+
+
+import os
+import random
+word = ['apple', 'banana', 'strawberry', 'blueberry', 'grape', 'watermelon', 'orange']
+
+answer=input("do you want to play a game?")
+while ('y' in answer):
+    guesses = 0
+    randy=random.choice(word)
+    print ("welcome")
+    print ("guess a character")
+    print (randy)
+    while (guesses < 10 and word != randy):
+        num = input("give me a number")
+        try:
+            word = (word)
+            guesses += 1
+            if word == randy:
+                print ("you win!!")
+            else:
+                print ("guess again!")
+        except ValueError:
+            check = False
+    answer=input("do you want to play again?")
