@@ -4,26 +4,29 @@
 
 
 
-import os
-import random
-word = ['apple', 'banana', 'strawberry', 'blueberry', 'grape', 'watermelon', 'orange']
+import os, sys, random
+os.system ('cls')
 
+word = ['apple', 'banana', 'strawberry', 'blueberry', 'grape', 'watermelon', 'orange']
+#Flag=True
 answer=input("do you want to play a game?")
 while ('y' in answer):
     guesses = 0
-    randy=random.choice(word)
+    myword=random.choice(word)
     print ("welcome")
-    print ("guess a character")
-    print (randy)
-    while (guesses < 10 and word != randy):
-        num = input("give me a number")
-        try:
-            word = (word)
-            guesses += 1
-            if word == randy:
-                print ("you win!!")
-            else:
-                print ("guess again!")
-        except ValueError:
-            check = False
+    print ("guess a fruit to see if you can guess the right fruit. you have 10 tries.")
+    print (myword)
+    while (guesses < 10 and word != myword):
+        word = input("give me a fruit")
+        if myword == (input):
+            print ("yes!! you win!")
+        else:
+            print("guess another!")
+        guesses += 1
+        if word == myword:
+            print ("you win!!")
+        else:
+            print ("guess again!")
+        
     answer=input("do you want to play again?")
+
