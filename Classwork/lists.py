@@ -8,12 +8,13 @@
 import os, sys, random
 os.system ('cls')
 
-def updateWord(fruits, guesses):
-    for letter in fruits:
+def updateWord(word, guesses, turns):
+    for letter in word:
         if letter in guesses:
             print(letter, end = " ")
         else:
             print('_', end = ' ')
+            turns-=1
 
 #define fuction for Menu
 def Menu():
@@ -25,11 +26,16 @@ def Menu():
     print("#                      4) exit                           #")
     print("# to play the game, select 1-3. to exit the game selet 4.#")
     print("##########################################################")
-    sel=input("what would you like to do?")
-    # try:
-    # except:
-    sel=int(sel)
+
+    while 1:
+        sel=input("which one would you like to do?")
+        try:
+            sel = int(sel)
+            break
+        except ValueError:
+            print("this is not an integer, please respond with 1-4")
     return sel
+
 def selWord(sel):
     if sel ==1:
         word = random.choice(animals)
@@ -38,49 +44,63 @@ def selWord(sel):
     else:
         word = random.choice(colors)
     return word
+
 colors = ('red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet')
 animals = ('lion', 'tiger', 'dog', 'cat', 'monkey', 'giraffe', 'penguin')
 fruits = ('apple', 'banana', 'strawberry', 'blueberry', 'grape', 'watermelon', 'orange')
-
-print ("welcome")
-print ("guess a letter to see if it is in the word. you have 10 tries.")
+score = 0
+maxscore = 0
 name = input("what is your name?")
+
 counter = 0
 sel = Menu()
-answer=input(name + ", do you want to play the game?")
-while sel != 4:
-    print
+print(sel)
+
+while sel != 4:#control the number of games played
+    print ("welcome, " + name)
+    print ("guess a letter to see if it is in the word. you have 10 tries.")
     print ("good luck!")
 
-while ('y' in answer):#control the number of games played
-    turns = 10
+    turns = counter + 2
     counter += 1
 
     guesses = ' '
 
-    myword=random.choice(fruits)
-    myword = myword.lower()
+    word = selWord(sel)
+    word = word.lower()
 
-    mywordCount = len(myword)
+    wordCount = len(word)
     letCount= 0
 
-    print(myword)
-    updateWord(fruits, guesses)
+    print(word) #just to check what it is
+    updateWord(word, guesses, turns)
 
-    while turns > 0 and letCount > mywordCount: 
+    while turns > 0 and letCount < wordCount: 
         print()
         newguess = input ("give me a letter, " + name)
         newguess = newguess.lower()
-        if newguess in myword:
-                guesses += newguess
+        if newguess in word:
+            guesses += newguess
             letCount +=1
             print ("you guessed one letter")
         else:
             turns -= 1
             print ("sorry, thats wrong. you have ", turns, " turns left")
-        updateWord(fruits, guesses)
+        updateWord(word, guesses, turns)
+    if turns > 0 :
+        print(" ")
+        print("you win!!")
+        score += 1
+        print(score)
+    else:
+        print("you lose...try again")
+        score = score
 
-    answer = input(name + ", do you want to play again?")
-    os.system('cls')
+    score = 3 + wordCount + 5 * turns
+    if score > maxscore:
+        maxscore = score
+    print(maxscore)
     sel = Menu()
- 
+
+    os.system('cls')
+    sel = Menu() 
