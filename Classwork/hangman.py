@@ -8,7 +8,7 @@
 import os, sys, random
 os.system ('cls')
 
-def updateWord(word, guesses, turns):
+def updateWord(word, guesses, turns): #this function checks if the letter is in the word that is being guessed
     count = 0
     for letter in word:
         if letter in guesses:
@@ -41,7 +41,7 @@ def Menu():
             print("this is not an integer, please respond with 1-5")
     return sel
 
-def selWord(sel):
+def selWord(sel): #determine which list to randomly choose from
     if sel == 1:
         word = random.choice(animals)
     elif sel == 2:
@@ -78,10 +78,10 @@ while sel < 4:#control the number of games played
     wordCount = len(word)
     letCount= 0
 
-    print(word) #just to check what it is
+    #print(word) #just to check what it is
     updateWord(word, guesses, turns)
 
-    while turns > 0 and letCount < wordCount: 
+    while turns > 0 and letCount < wordCount: #controls the letters guessed and turns
         print()
         newguess = input ("give me a letter, " + name)
         newguess = newguess.lower()
@@ -109,7 +109,7 @@ while sel < 4:#control the number of games played
 
     os.system('cls')
 
-myFile = open('scoreboard.txt', 'a')
+myFile = open('scoreboard.txt', 'a') #opens my scoreboard
 myFile.write('\n' + name + '\t Highest score:\t' + str(maxscore))
 
 if sel == 4:
