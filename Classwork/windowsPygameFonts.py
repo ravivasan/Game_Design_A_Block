@@ -34,28 +34,30 @@ def display_subtitle(message, x, y):
     py.time.delay(100)
 
 run = True
+count = 0
 while run:
     for eve in py.event.get():
         if eve.type == py.QUIT:
             run = False
             py.quit()
-    display_title("settings")
-    py.time.delay(300)
-    window.fill(black)
+    if count == 0:
+        window.fill(black)
+        display_title("settings")
+        py.time.delay(300)
+        
+        display_subtitle("window size",80, 250)
     
-    display_subtitle("window size",80, 150)
-    window.fill(black)
-    py.time.delay(300)
-    display_subtitle("background color", 80, 250)
-    window.fill(black)
-    py.time.delay(300)
-    display_subtitle("object colors", 80, 350)
-    window.fill(black)
-    py.time.delay(300)
-    display_subtitle("sound (on/off)", 80, 450)
-    window.fill(black)
-    py.time.delay(300)
-
+        py.time.delay(300)
+        display_subtitle("background color", 80, 350)
+        
+        py.time.delay(300)
+        display_subtitle("object colors", 80, 450)
+        
+        py.time.delay(300)
+        display_subtitle("sound (on/off)", 80, 550)
+        
+        py.time.delay(300)
+        count += 1
 #print the rest of the menu in the settings
     #window size
     #background color
